@@ -25,7 +25,7 @@ const InputRow = (props) => {
             {
                 values.map((v, index) => {
                     return (
-                        <InputBox key={index} value={v} order={index} id={ids[index]} />
+                        <InputBox key={index} value={v} order={index} idFor={ids[index]} />
                     )
                 })
             }

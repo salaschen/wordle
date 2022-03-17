@@ -4,23 +4,12 @@ import './index.css';
 import App from './App';
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-
-
-const trynumberReducer = (state = 0, action) => {
-    switch (action.type) {
-        case 'ADD_TRY':
-            return state + 1
-
-        case 'RESET_TRY':
-            return 0
-
-        default:
-            return state
-    }
-}
+import { trynumberReducer, guessReducer, wordReducer } from './reducers/reducers'
 
 const reducer = combineReducers({
     tryNumber: trynumberReducer,
+    guesses: guessReducer,
+    word: wordReducer,
 })
 
 const store = createStore(reducer)

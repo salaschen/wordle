@@ -1,5 +1,6 @@
 const HeaderStyle = {
     marginTop: "5px",
+    marginBottom: "5px",
 }
 
 const Header = (props) => {

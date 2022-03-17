@@ -65,3 +65,49 @@ button.virtual-key {
     font-weight: bold;
 }
 
+/**
+    Style for the InputBox flip effect
+*/
+.flipped {
+    transform: rotateX(180deg);
+}
+
+.flipped .Green-Box {
+    background-color: #6aaa64;
+    color: white;
+}
+
+.flipped .Gray-Box {
+    background-color: #86888a ;
+    color: white;
+}
+
+.flipped .Yellow-Box {
+    background-color: #c9b458;
+    color: white;
+}
+
+.flip-card-inner {
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.flip-card-back {
+    transform: rotateX(180deg);
+    /* background-color: green; */
+    /* color: white; */
+    padding-top: 10px;
+}
+
+.flip-card-front {
+    padding-top: 10px;
+}
+
