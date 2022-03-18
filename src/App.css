@@ -111,3 +111,14 @@ button.virtual-key {
     padding-top: 10px;
 }
 
+/**
+Style for the snackbar (notification)
+*/
+.MuiSnackbarContent-message {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.MuiSnackbar-root > div {
+    justify-content: center;
+}

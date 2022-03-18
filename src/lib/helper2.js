@@ -1,3 +1,23 @@
+import { addCount, resetWin, resetGuess, resetTry } from './reducerHelper'
+
+export const resetGame = (dispatch) => {
+    addCount(dispatch)
+    resetWin(dispatch)
+    resetGuess(dispatch)
+    resetTry(dispatch)
+
+    // flip back all the boxes
+    for (let i =  0 ; i < 5 * 6 ; i++) {
+        let container = document.getElementById(i)
+        container.classList.remove('flipped')
+        let elem = document.getElementById(i+'back')
+        elem.classList.remove('Gray-Box')
+        elem.classList.remove('Green-Box')
+        elem.classList.remove('Yellow-Box')
+    }
+}
+
+
 // monitor user's keyboard input, if they decided not to use the virtual keyboard.
 export const keypressHandler = (event, dispatch, tryNum) => {
     const keycode = event.keyCode
@@ -35,8 +55,8 @@ export const keypressHandler = (event, dispatch, tryNum) => {
 export const handleSubmit = (event, dispatch, guess, target) => {
     const length = guess.filter(ch => ch !== '').length
     if (length < 5) {
-        // TODO: Make a notification to the user.
-        console.log('you need 5 letters!')
+        // console.log('you need 5 letters!')
+        // '' will trigger another notification on gameboard.
         return '' 
     } else {
         // Valid Guess.

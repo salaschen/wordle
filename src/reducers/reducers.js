@@ -1,3 +1,35 @@
+// Control the count state - used to refresh/reset the game
+export const countReducer = (state = 0, action) => {
+    switch (action.type) {
+        case 'ADD_COUNT':
+            return state + 1
+        default:
+            return state
+    }
+}
+
+
+// Control the Win state
+export const winReducer = (state = false, action) => {
+    switch (action.type) {
+        case 'SET_WIN': 
+            return action.data
+        default:
+            return state
+    }
+}
+
+// Control the notification state
+export const notifyReducer = (state = '', action) => {
+    switch (action.type) {
+        case 'SET_NOTIFY':
+            return action.data
+
+        default:
+            return state
+    }
+}
+
 // Specify how many tries the users have been made already.
 // Starts from 0, then 1,2,3,4,5.
 export const trynumberReducer = (state = 0, action) => {
@@ -30,6 +62,8 @@ const rowLength = (row) => {
 }
 
 // The reducer for user guesses.
+// Can handle when user puts more character when needed
+// can handle when user deletes more than they can.
 export const guessReducer = (state = originalGuesses(), action) => {
 
     switch (action.type) {

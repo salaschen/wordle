@@ -4,12 +4,18 @@ import './index.css';
 import App from './App';
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import { trynumberReducer, guessReducer, wordReducer } from './reducers/reducers'
+import { 
+    countReducer, winReducer, notifyReducer, 
+    trynumberReducer, guessReducer, wordReducer 
+} from './reducers/reducers'
 
 const reducer = combineReducers({
     tryNumber: trynumberReducer,
     guesses: guessReducer,
     word: wordReducer,
+    notification: notifyReducer,
+    win: winReducer,
+    count: countReducer
 })
 
 const store = createStore(reducer)

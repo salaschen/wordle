@@ -4,7 +4,7 @@ The virtual keyboard.
 import Grid from '@mui/material/Grid'
 import ButtonUnstyled from '@mui/base/ButtonUnstyled'
 import Button from '@mui/material/Button'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const KeyboardBackgroundStyle = {
     backgroundColor: "#ececec",
@@ -22,16 +22,17 @@ const Keyboard = (props) => {
     const midRow = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L']
     const bottom = [ 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'DEL']
     const dispatch = useDispatch()
+    const tryNum = useSelector(state => state.tryNumber)
 
     // handle the virtual keyboard keystrokes
     const keyHandler = (event) => {
         event.preventDefault()
         const value = event.target.textContent
         if (value === 'DEL') {
-            dispatch({ type: 'DELETE' })
+            dispatch({ type: 'DELETE_GUESS', tryNum: tryNum })
         }
         else {
-            dispatch({ type: 'ADD', data: value })
+            dispatch({ type: 'ADD_GUESS', tryNum: tryNum, data: value })
         }
     }
 

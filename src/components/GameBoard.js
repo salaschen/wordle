@@ -9,7 +9,10 @@ import TextField from '@mui/material/TextField'
 import { useSelector, useDispatch } from 'react-redux'
 import { distributeGuessesToRows, useEventHandler } from '../lib/helper'
 import Keyboard from './Keyboard'
-import { keypressHandler, handleSubmit } from '../lib/helper2'
+import { resetGame, keypressHandler, handleSubmit } from '../lib/helper2'
+import { setWin, setNotification } from '../lib/reducerHelper'
+import Snackbar from '@mui/material/Snackbar'
+import Button from '@mui/material/Button'
 
 const BoardStyle = {
     margin: "10px",
@@ -29,25 +32,80 @@ const GameBoard = (props) => {
     const tryNum = useSelector(state => state.tryNumber)
     const dispatch = useDispatch()
     const target = useSelector(state => state.word)
+    const win = useSelector(state => state.win)
+    const notification = useSelector(state => state.notification)
+    const count = useSelector(state => state.count)
+    const [ open, setOpen] = useState(false)
+    const [ showButton, setShowButton ] = useState('none')
+    console.log('win: ', win) // debug
+    console.log('notification: ', notification) // debug
+    console.log('target: ', target) // debug
+    console.log('count:', count) // debug
       
     // Get a new Target word
     // To be controled by a global state.
     useEffect(() => {
         // TODO: make a request to the backend to fetch a new word.
-        dispatch({
-            type: 'INIT_WORD', 
-            data: 'MOVIE', 
-        })
-    }, [])
+        const words = [
+            'MOVIE', 'SAUCE', 'PITCH', 'STYLE', 'LOVER', 'HELLO', 'HAVEN', 'GUILT','SAINT', 
+            'HANDY', 'JULIE', 'ENTER', 'WORLD'
+        ]
+        const chance = 1 / words.length
+        let sent = false
+        for (let i = 0 ; i < words.length ; i++) {
+            if (Math.random() <= chance) {
+                dispatch({
+                    type: 'INIT_WORD', 
+                    data: words[i], 
+                })
+                sent = true
+                break
+            }
+        }
+        if (!sent) {
+            dispatch({
+                type: 'INIT_WORD', 
+                data: 'BLOOD', 
+           })
+        }
+        setShowButton('none')
+    }, [count])
 
-    const keypressEventHandler = (event) => {
+    const keypressEventHandler = async (event) => {
+        // Handle the 'Enter' key
         if (event.key === 'Enter' || event.keyCode === 13) {
             const guess = values[tryNum]
             const feedback = handleSubmit(event, dispatch, guess, target)
-            if (!feedback) return
+
+            // If the guess is not in the right format
+            if (!feedback) {
+                setNotification(dispatch, "Not a 5 letter word", setOpen)
+                return
+            }
+
             const idStart = tryNum * 5
-            flipRow(idStart, feedback)
+            await flipRow(idStart, feedback)
+
+            // User has win the game
+            if (feedback.join('') === 'ggggg') {
+                setWin(dispatch, true)
+                setNotification(dispatch, "Excellent", setOpen)
+                // resetGame(dispatch)
+                setTimeout(() => {
+                    setShowButton('')
+                }, 1000)
+            }
+            // used up all the guesses, user loses.
+            else if (tryNum === 5) {
+                setNotification(dispatch, "You have used all guesses", setOpen)
+                // resetGame(dispatch)
+                setTimeout(() => {
+                    setShowButton('')
+                }, 1000)
+            }
         }
+
+        // Handle other keys
         else {
             return keypressHandler(event, dispatch, tryNum)       
         }
@@ -58,29 +116,35 @@ const GameBoard = (props) => {
     
     return (
         <Grid container rowSpacing={2} sx={BoardStyle}>
+            <Snackbar 
+                key="notification" 
+                open={open}
+                anchorOrigin={{ 'vertical': 'top', 'horizontal': 'center' }}
+                message={notification}
+            />
+ 
+            <Grid container sx={{justifyContent: "center", display: showButton}}>
+                <Grid item>
+                    <Button onClick={event => resetGame(dispatch)}
+                    variant="contained"> Play Again </Button>
+                </Grid>
+            </Grid>
             <InputRow values={values[0]} idStart={0} />
             <InputRow values={values[1]} idStart={5} />
             <InputRow values={values[2]} idStart={10} />
             <InputRow values={values[3]} idStart={15} />
             <InputRow values={values[4]} idStart={20} />
             <InputRow values={values[5]} idStart={25} />
-            <button onClick={testFlip}> Flip </button>
+            {/* <button onClick={testFlip}> Flip </button> */}
         </Grid>
     )
 }
 
-const testFlip = (event) => {
-    event.preventDefault()
-    // const elem = document.getElementById('0')
-    // console.log(elem) ; // debug
-    flipRow(0) // flip the first row
-}
-
 // Flip the whole Row of characters.
-const flipRow = (idStart, feedback='ggggg') => {
-    // console.log('flip row:', idStart, feedback) // debug
+const flipRow = async (idStart, feedback='ggggg') => {
+    let threads = []
     for (let i = 0; i < 5 ; i++) {
-        const id = i + idStart
+       const id = i + idStart
         const elem = document.getElementById(id+'back')
         switch (feedback[i]) {
             case '.':
@@ -95,12 +159,17 @@ const flipRow = (idStart, feedback='ggggg') => {
             default:
                 break 
         }
-        setTimeout(() => {
-            const elemContainer = document.getElementById(id)
-            elemContainer.classList.add('flipped')
-        }, i*500)
-    }
-}
 
+        let thisPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(true)
+                const elemContainer = document.getElementById(id)
+                elemContainer.classList.add('flipped')
+            }, i*500)
+        })
+        threads.push(thisPromise)
+    }
+    await Promise.all(threads)
+}
 
 export default GameBoard
