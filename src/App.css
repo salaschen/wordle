@@ -37,6 +37,10 @@
   }
 }
 
+.Header h1 {
+    padding-left: 80px;
+}
+
 /* 
     Style override for the Virtual Keyboard 
 */
@@ -123,11 +127,11 @@ button.virtual-key {
     transform: rotateX(180deg);
     /* background-color: green; */
     /* color: white; */
-    padding-top: 10px;
+    /* padding-top: 10px; */
 }
 
 .flip-card-front {
-    padding-top: 10px;
+    /* padding-top: 10px; */
 }
 
 /**
