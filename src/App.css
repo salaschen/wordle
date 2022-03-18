@@ -41,28 +41,47 @@
     Style override for the Virtual Keyboard 
 */
 
+.virtual-key-row {
+    height: 60px;
+    margin-top: 15px;
+}
+
+
+.virtual-key-row button{
+    height: 100%;
+    width: 47px;
+    margin-left: 5px;
+    border-radius: 4px;
+    background-color: #d3d6da;
+    font-weight: bold;
+    border: 0;
+}
+
+.virtual-key-row button:hover  {
+    background-color: gray;
+    color: white
+}
+
+#ENTERbutton, #DELbutton {
+    width: 70px;
+}
+
+
 button.virtual-key {
-    min-width: 50px !important;
+    /* min-width: 50px !important; */
     /*width: 40px;*/
 }
 
 #midRow button.virtual-key {
-    min-width: 55px !important;
+    /* min-width: 55px !important; */
 }
 
 #bottom  button.virtual-key {
-    min-width: 62px !important;
+    /* min-width: 62px !important; */
 }
 
 .MuiGrid-container {
     max-width: 750px !important;
-}
-
-button.virtual-key {
-    /* background-color: #d3d6da; */
-    background-color: #eeeee4;
-    color: black;
-    font-weight: bold;
 }
 
 /**

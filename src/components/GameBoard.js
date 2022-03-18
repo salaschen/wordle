@@ -37,10 +37,10 @@ const GameBoard = (props) => {
     const count = useSelector(state => state.count)
     const [ open, setOpen] = useState(false)
     const [ showButton, setShowButton ] = useState('none')
-    console.log('win: ', win) // debug
-    console.log('notification: ', notification) // debug
-    console.log('target: ', target) // debug
-    console.log('count:', count) // debug
+    // console.log('win: ', win) // debug
+    // console.log('notification: ', notification) // debug
+    // console.log('target: ', target) // debug
+    // console.log('count:', count) // debug
       
     // Get a new Target word
     // To be controled by a global state.
@@ -72,6 +72,7 @@ const GameBoard = (props) => {
     }, [count])
 
     const keypressEventHandler = async (event) => {
+        // console.log('inside handler: ', event) ; // debug
         // Handle the 'Enter' key
         if (event.key === 'Enter' || event.keyCode === 13) {
             const guess = values[tryNum]

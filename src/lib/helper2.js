@@ -62,7 +62,7 @@ export const handleSubmit = (event, dispatch, guess, target) => {
         // Valid Guess.
         // Accept the guess, compare it with the target and give feedback to the user.
         const result = feedback(target, guess)
-        console.log(result) // debug
+        // console.log(result) // debug
 
         // update the tryNum
         dispatch({

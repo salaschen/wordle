@@ -19,9 +19,7 @@ function Main() {
             <GameBoard />
         </Container>
         <Container maxWidth="sm">
-            <Grid container >
-                <Keyboard />
-            </Grid>
+            <Keyboard />
         </Container>
     </div>
   );

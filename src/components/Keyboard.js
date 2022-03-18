@@ -16,11 +16,13 @@ const ButtonStyle = {
     minWidth: "40px",
 }
 
+
+
 const Keyboard = (props) => {
 
     const topRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P']
     const midRow = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L']
-    const bottom = [ 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'DEL']
+    const bottom = [ 'ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'DEL']
     const dispatch = useDispatch()
     const tryNum = useSelector(state => state.tryNumber)
 
@@ -31,6 +33,13 @@ const Keyboard = (props) => {
         if (value === 'DEL') {
             dispatch({ type: 'DELETE_GUESS', tryNum: tryNum })
         }
+        else if (value == 'ENTER') {
+            // trigger the keyboard press event.
+            const event = document.createEvent('Event')
+            event.initEvent('keydown', true, true)
+            event.key = 'Enter'
+            document.dispatchEvent(event)
+        }
         else {
             dispatch({ type: 'ADD_GUESS', tryNum: tryNum, data: value })
         }
@@ -38,45 +47,49 @@ const Keyboard = (props) => {
 
     return (
         // The keyboard is a grid item of the board but also the container of the keys.
-        <Grid container item sx={{KeyboardBackgroundStyle}} rowSpacing={1}>
-            <Grid item container id="topRow" justifyContent="start" spacing={2}>
+        <div sx={{KeyboardBackgroundStyle}} >
+            <div  sx={{"display": "flex"}}  id="topRow" className="virtual-key-row" spacing={2}>
                 { topRow.map(key => 
                     {
                         return (
-                            <Grid key={key} item sm={1.2} >
-                                <Button onClick={keyHandler} className="virtual-key" variant="outlined">{key}</Button>
-                            </Grid>
+                            <ButtonUnstyled key={key} id={key+'button'}
+                                onClick={keyHandler} className="virtual-key" >
+                                {key}
+                            </ButtonUnstyled>
                         )
                     })
                 }
-            </Grid>
-            <Grid item container id="midRow" justifyContent="start" md={12} spacing={2}>
+            </div>
+            <div sx={{KeyboardBackgroundStyle}} id="midRow" className="virtual-key-row" spacing={2}>
                 { midRow.map(key => 
                     {
                         return (
-                            <Grid key={key} item sm={1.3} >
-                                <Button onClick={keyHandler} className="virtual-key" variant="outlined">{key}</Button>
-                            </Grid>
+                            <ButtonUnstyled key={key} id={key+'button'}
+                                onClick={keyHandler} className="virtual-key" variant="outlined">
+                                {key}
+                            </ButtonUnstyled>
                         )
                     })
                 }
                 {
                     
                 }
-            </Grid>
-            <Grid item container id="bottom" justifyContent="start" spacing={2}>
+            </div>
+            <div sx={{KeyboardBackgroundStyle}} id="bottom"  className="virtual-key-row">
                 { bottom.map(key => 
                     {
                         return (
-                            <Grid key={key} item sm={1.5} >
-                                <Button onClick={keyHandler} className="virtual-key" variant="outlined">{key}</Button>
-                            </Grid>
+                            <ButtonUnstyled key={key} id={key+'button'}
+                                onClick={keyHandler} 
+                                className="virtual-key" variant="outlined">
+                                {key}
+                            </ButtonUnstyled>
                         )
                     })
                 }
-            </Grid>
+            </div>
  
-        </Grid>
+        </div>
     )
 }
 
