@@ -6,7 +6,7 @@ import Container from '@mui/material/Container'
 import GameBoard from './GameBoard'
 import Divider from '@mui/material/Divider'
 import Keyboard from './Keyboard'
-import Grid from '@mui/material/Grid'
+// import Grid from '@mui/material/Grid'
 
 function Main() {
 

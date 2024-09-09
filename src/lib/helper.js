@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 
 // helper function: To change a flat array into an array of arrays.
 export const distributeGuessesToRows = (guesses) => {

@@ -3,15 +3,15 @@ InputBox: only accepts one letter, and allow background color to be changed by u
 */
 import { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 
 
 // Define colors to be used in the Box
 // Originally from the NY-times Wordle game
-const YELLOW = "#c9b458"
+// const YELLOW = "#c9b458"
 const WHITE = "#fff"
-const GREEN = "#6aaa64"
-const GRAY = "#86888a"
+// const GREEN = "#6aaa64"
+// const GRAY = "#86888a"
 const BLACK = "#212121"
 
 const InputBoxStyle = {
@@ -39,21 +39,21 @@ const InputBoxStyle = {
 const InputBox = (props) => {
     let id = props.idFor
     let value = props.value
-    const dispatch = useDispatch() ;
+    // const dispatch = useDispatch() ; // not needed
     const [order, setOrder] = useState(0)
     // scheme represents the color index of the box
-    const [scheme, setScheme] = useState(-1)
-    const [personalStyle, setPersonalStyle] = useState({
+    // const [scheme, setScheme] = useState(-1)
+    const [personalStyle ] = useState({
         background: WHITE,
         color: BLACK,    
     })
 
-    const colors = [GREEN, YELLOW, GRAY]
+    // const colors = [GREEN, YELLOW, GRAY]
 
     useEffect(() => {
         // setValue(props.value)
         setOrder(props.order)
-    }, [value])
+    }, [value, props.order])
 
 
     return (
