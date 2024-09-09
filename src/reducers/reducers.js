@@ -82,7 +82,6 @@ export const guessReducer = (state = originalGuesses(), action) => {
                 result[tryNum] = row
                 return result 
             }
-            return
         }
         
         case 'DELETE_GUESS':  {
@@ -99,7 +98,6 @@ export const guessReducer = (state = originalGuesses(), action) => {
                 result[tryNum] = row
                 return result
             }
-            return
         }
             
 

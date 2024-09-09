@@ -1,9 +1,9 @@
 /**
 The virtual keyboard.
 */
-import Grid from '@mui/material/Grid'
+// import Grid from '@mui/material/Grid'
 import ButtonUnstyled from '@mui/base/ButtonUnstyled'
-import Button from '@mui/material/Button'
+// import Button from '@mui/material/Button'
 import { useDispatch, useSelector } from 'react-redux'
 
 const KeyboardBackgroundStyle = {
@@ -12,9 +12,11 @@ const KeyboardBackgroundStyle = {
     margin: "10px",
 }
 
+/*
 const ButtonStyle = {
     minWidth: "40px",
 }
+*/
 
 
 
@@ -33,7 +35,7 @@ const Keyboard = (props) => {
         if (value === 'DEL') {
             dispatch({ type: 'DELETE_GUESS', tryNum: tryNum })
         }
-        else if (value == 'ENTER') {
+        else if (value === 'ENTER') {
             // trigger the keyboard press event.
             const event = document.createEvent('Event')
             event.initEvent('keydown', true, true)

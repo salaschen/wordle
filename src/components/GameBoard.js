@@ -2,13 +2,13 @@
 Gameboard - A 2-dimentional plane that holds the tiles of the game.
 */
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import InputRow from './InputRow'
 import Grid from '@mui/material/Grid'
-import TextField from '@mui/material/TextField'
+// import TextField from '@mui/material/TextField'
 import { useSelector, useDispatch } from 'react-redux'
-import { distributeGuessesToRows, useEventHandler } from '../lib/helper'
-import Keyboard from './Keyboard'
+import { useEventHandler } from '../lib/helper'
+// import Keyboard from './Keyboard'
 import { resetGame, keypressHandler, handleSubmit } from '../lib/helper2'
 import { setWin, setNotification } from '../lib/reducerHelper'
 import Snackbar from '@mui/material/Snackbar'
@@ -32,7 +32,7 @@ const GameBoard = (props) => {
     const tryNum = useSelector(state => state.tryNumber)
     const dispatch = useDispatch()
     const target = useSelector(state => state.word)
-    const win = useSelector(state => state.win)
+    // const win = useSelector(state => state.win)
     const notification = useSelector(state => state.notification)
     const count = useSelector(state => state.count)
     const [ open, setOpen] = useState(false)
@@ -69,6 +69,7 @@ const GameBoard = (props) => {
            })
         }
         setShowButton('none')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [count])
 
     const keypressEventHandler = async (event) => {
