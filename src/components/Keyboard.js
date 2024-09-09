@@ -77,7 +77,7 @@ const Keyboard = (props) => {
                     
                 }
             </div>
-            <div sx={{KeyboardBackgroundStyle}} id="bottom"  className="virtual-key-row">
+            <div id="bottom"  className="virtual-key-row">
                 { bottom.map(key => 
                     {
                         return (
