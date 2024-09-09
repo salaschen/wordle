@@ -50,7 +50,7 @@ const Keyboard = (props) => {
     return (
         // The keyboard is a grid item of the board but also the container of the keys.
         <div sx={{KeyboardBackgroundStyle}} >
-            <div  sx={{"display": "flex"}}  id="topRow" className="virtual-key-row" spacing={2}>
+            <div id="topRow" className="virtual-key-row" spacing={2}>
                 { topRow.map(key => 
                     {
                         return (
@@ -62,7 +62,7 @@ const Keyboard = (props) => {
                     })
                 }
             </div>
-            <div sx={{KeyboardBackgroundStyle}} id="midRow" className="virtual-key-row" spacing={2}>
+            <div id="midRow" className="virtual-key-row" spacing={2}>
                 { midRow.map(key => 
                     {
                         return (
@@ -72,9 +72,6 @@ const Keyboard = (props) => {
                             </ButtonUnstyled>
                         )
                     })
-                }
-                {
-                    
                 }
             </div>
             <div id="bottom"  className="virtual-key-row">
