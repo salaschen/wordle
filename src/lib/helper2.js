@@ -68,6 +68,14 @@ export const handleSubmit = (event, dispatch, guess, target) => {
         dispatch({
             type: 'ADD_TRY'
         })
+
+        // update the letter map for the keyboard (the coloring)
+        dispatch({
+            type: 'UPDATE_LETTER_MAP',
+            word: guess,
+            result: result 
+        });
+
         return result
     }
 }
