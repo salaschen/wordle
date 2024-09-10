@@ -122,3 +122,41 @@ export const wordReducer = (state = '', action) => {
             return state
     }
 }
+
+export const letterMapReducer = (state = new Map(), action) => {
+    switch (action.type) {
+        case 'UPDATE_LETTER_MAP':
+            const word = action.word;
+            const feedback = action.result;
+            for (let i = 0 ; i < word.length; i++) {
+                updateMapForLetter(word[i], feedback[i], state);
+            }
+            // console.log(word, feedback); // debug
+            return new Map(state);
+        
+        case 'RESET_LETTER_MAP':
+            return new Map()
+        default:
+            return state;
+    }
+}
+
+const updateMapForLetter = (letter, result, map) =>  {
+    if (map.has(letter) === false) {
+        map.set(letter, result);
+    }
+    else if (compareLetter(result, map[letter]) > 0) {
+        map.set(letter,result);
+    }
+}
+
+// TODO: Add tests
+// . > g
+// g > y
+const compareLetter = (l1, l2) => {
+    if (l1 === l2) { return 0 ; }
+    if (l1 === ".") { return 1;  }
+    if (l2 === ".") { return -1; }
+    if (l1 === "g") { return 1; }
+    return -1;
+}

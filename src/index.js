@@ -6,7 +6,8 @@ import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { 
     countReducer, winReducer, notifyReducer, 
-    trynumberReducer, guessReducer, wordReducer 
+    trynumberReducer, guessReducer, wordReducer, 
+    letterMapReducer
 } from './reducers/reducers'
 
 const reducer = combineReducers({
@@ -15,7 +16,8 @@ const reducer = combineReducers({
     word: wordReducer,
     notification: notifyReducer,
     win: winReducer,
-    count: countReducer
+    count: countReducer,
+    letterMap: letterMapReducer
 })
 
 const store = createStore(reducer)

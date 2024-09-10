@@ -1,24 +1,15 @@
 /**
 The virtual keyboard.
 */
-// import Grid from '@mui/material/Grid'
 import ButtonUnstyled from '@mui/base/ButtonUnstyled'
-// import Button from '@mui/material/Button'
 import { useDispatch, useSelector } from 'react-redux'
+// import { trynumberReducer } from '../reducers/reducers'
 
 const KeyboardBackgroundStyle = {
     backgroundColor: "#ececec",
     paddingTop: "5px",
     margin: "10px",
 }
-
-/*
-const ButtonStyle = {
-    minWidth: "40px",
-}
-*/
-
-
 
 const Keyboard = (props) => {
 
@@ -27,6 +18,7 @@ const Keyboard = (props) => {
     const bottom = [ 'ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'DEL']
     const dispatch = useDispatch()
     const tryNum = useSelector(state => state.tryNumber)
+    const letterMap = useSelector(state => state.letterMap)
 
     // handle the virtual keyboard keystrokes
     const keyHandler = (event) => {
@@ -47,6 +39,31 @@ const Keyboard = (props) => {
         }
     }
 
+    const getKeyClass = (key) => {
+        if (letterMap.has(key)) {
+            let result = mapLetterCodeToClassName(letterMap.get(key))
+            return result
+        } else {
+            return ""
+        }
+    };
+
+    // . -> gray
+    // g -> green
+    // y -> yellow
+    const mapLetterCodeToClassName = (code) => {
+        switch (code) {
+            case '.':
+                return 'gray'
+            case 'g':
+                return 'green'
+            case 'y':
+                return 'yellow'
+            default:
+                return ""
+        }
+    };
+
     return (
         // The keyboard is a grid item of the board but also the container of the keys.
         <div sx={{KeyboardBackgroundStyle}} >
@@ -55,7 +72,7 @@ const Keyboard = (props) => {
                     {
                         return (
                             <ButtonUnstyled key={key} id={key+'button'}
-                                onClick={keyHandler} className="virtual-key" >
+                                onClick={keyHandler} className={"virtual-key " + getKeyClass(key)} >
                                 {key}
                             </ButtonUnstyled>
                         )
@@ -67,7 +84,7 @@ const Keyboard = (props) => {
                     {
                         return (
                             <ButtonUnstyled key={key} id={key+'button'}
-                                onClick={keyHandler} className="virtual-key" variant="outlined">
+                                onClick={keyHandler} className={"virtual-key " + getKeyClass(key)} variant="outlined">
                                 {key}
                             </ButtonUnstyled>
                         )
@@ -80,14 +97,13 @@ const Keyboard = (props) => {
                         return (
                             <ButtonUnstyled key={key} id={key+'button'}
                                 onClick={keyHandler} 
-                                className="virtual-key" variant="outlined">
+                                className={"virtual-key " + getKeyClass(key)} variant="outlined">
                                 {key}
                             </ButtonUnstyled>
                         )
                     })
                 }
             </div>
- 
         </div>
     )
 }

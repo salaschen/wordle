@@ -31,11 +31,17 @@ export const resetWin = (dispatch) => {
         type: 'SET_WIN',
         data: false
     })
+    dispatch({
+        type: 'RESET_LETTER_MAP'
+    })
 }
 
 export const resetTry = (dispatch) => {
     dispatch({
         type: 'RESET_TRY'
+    })
+    dispatch({
+        type: 'RESET_LETTER_MAP'
     })
 }
 

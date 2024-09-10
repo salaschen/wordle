@@ -5,10 +5,8 @@ Gameboard - A 2-dimentional plane that holds the tiles of the game.
 import { useState, useEffect } from 'react'
 import InputRow from './InputRow'
 import Grid from '@mui/material/Grid'
-// import TextField from '@mui/material/TextField'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEventHandler } from '../lib/helper'
-// import Keyboard from './Keyboard'
 import { resetGame, keypressHandler, handleSubmit } from '../lib/helper2'
 import { setWin, setNotification } from '../lib/reducerHelper'
 import Snackbar from '@mui/material/Snackbar'
@@ -32,15 +30,17 @@ const GameBoard = (props) => {
     const tryNum = useSelector(state => state.tryNumber)
     const dispatch = useDispatch()
     const target = useSelector(state => state.word)
-    // const win = useSelector(state => state.win)
     const notification = useSelector(state => state.notification)
     const count = useSelector(state => state.count)
+    // const letterMap = useSelector(state => state.letterMap)
     const [ open, setOpen] = useState(false)
     const [ showButton, setShowButton ] = useState('none')
     // console.log('win: ', win) // debug
+    // console.log('in gameboard:'); // debug
     // console.log('notification: ', notification) // debug
     // console.log('target: ', target) // debug
-    // console.log('count:', count) // debug
+    // console.log('tryNum: ', tryNum); // debug
+    // console.log('letterMap:', letterMap); // debug
       
     // Get a new Target word
     // To be controled by a global state.
