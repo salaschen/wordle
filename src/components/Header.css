@@ -1,0 +1,53 @@
+.Header {
+    display: flex
+}
+
+#author-button {
+    height: 100%;
+    background-color: white; 
+    border: none;
+    cursor: pointer;
+}
+
+#author-button:hover {
+    background-color: #ebebeb;
+}
+
+.menu {
+    display:flex;
+    justify-content: flex-end;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+}
+
+.info-dialog {
+    border: none;
+    border-radius: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.info-dialog h4 {
+    margin-top: 5px;
+}
+
+.info-dialog ul {
+    padding-inline-start: 20px;
+    text-align: start;
+}
+
+.md-1 { width: 8.33%; }
+.md-2 { width: 16.7%; }
+.md-3 { width: 25%; }
+.md-4 { width: 33.3%; }
+.md-5 { width: 41.66%; }
+.md-6 { width: 50%; }
+.md-7 { width: 58.33%; }
+.md-8 { width: 66.6%; }
+.md-9 { width: 75%; }
+.md-10 { width: 83.3%; }
+.md-11 { width: 91.66%; }
+.md-12 { width: 100%; }
