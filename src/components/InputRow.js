@@ -5,16 +5,15 @@ import InputBox from './InputBox'
 const RowStyle = {
     display: "flex",
     justifyContent: "center",
-    gap: "10px"
+    gap: "5px",
+    paddingTop: "5px"
 }
 
 const InputRow = (props) => {
-    // const [values, setValues] = useState(['','','','',''])
-
     let values = props.values
     let idStart = props.idStart
     
-    // I need python's list comprehension.
+    // I need python's list comprehension. :)
     let ids = []
     for (let i = idStart ; i < idStart + 5 ; i++) {
         ids.push(i)
