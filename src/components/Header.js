@@ -42,6 +42,7 @@ const Header = (props) => {
                 >
                     <form>
                         <div><h4>INFO</h4></div>
+                        <Divider />
                         <div style={{borderBottom: "2px"}}>
                             <ul>
                                 <li>This is a Wordle game.</li>

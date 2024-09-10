@@ -20,7 +20,7 @@ const InputBoxStyle = {
         sm: "50px",
     },
     display: "flex",
-    border: "1px solid lightgrey",
+    border: "2px solid #d3d6da",
     justifyContent: "center",
     alignItems: "center",
     flexBasis: "auto",
