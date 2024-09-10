@@ -64,6 +64,21 @@
     border: 0;
 }
 
+.virtual-key-row button.gray {
+    background-color: gray;
+    color: white;
+}
+
+.virtual-key-row button.green {
+    background-color: green;
+    color: white
+}
+
+.virtual-key-row button.yellow {
+    background-color: #c9b458;
+    color: white
+}
+
 .virtual-key-row button:hover  {
     background-color: gray;
     color: white
@@ -90,6 +105,15 @@ button.virtual-key {
 
 .MuiGrid-container {
     max-width: 750px !important;
+}
+
+/* Override the box styles */
+.MuiGrid-item div  {
+    font-size: 35px;
+    font-weight: 600;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /**
