@@ -34,8 +34,10 @@ const Header = (props) => {
                 <dialog 
                     ref={dialogRef}
                     onClick={(e) => {
+                        // click on the backdrop to close the dialog
                         if (e.currentTarget === e.target) {
                             toggleDialog();
+                            document.getElementById("author-button")?.blur(); // make sure the button loses focus
                         }
                     }}
                     className='info-dialog'
